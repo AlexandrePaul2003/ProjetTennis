@@ -6,7 +6,7 @@ import java.util.List;
 public class Tournament {
 	private String name;
 	private Schedule[] schedules = new Schedule[5];
-	private List<Court> courts = new ArrayList<Courts>();
+	private List<Court> courts = new ArrayList<Court>();
 	private List<Referee> referees = new ArrayList<Referee>();
 	
 	public Tournament() {

@@ -1,9 +1,12 @@
 package be.PaulA.pojo;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Schedule {
 	private ScheduleType type;
 	private int actualRound;
-	Queue<Match> matches = new Queue<Match>();
+	Queue<Match> matches = new LinkedList<Match>();
 	private Tournament touramenet;
 	
 	public Schedule() {
@@ -39,13 +42,13 @@ public class Schedule {
 	
 	
 	public int nbWinningSet() {
-		
+		return 0;
 	}
 	public void playNextRound() {
 		
 	}
 	public Player getWinner(){
-		
+		return null;
 	}
 	
 	

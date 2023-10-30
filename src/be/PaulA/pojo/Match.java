@@ -93,7 +93,7 @@ public class Match {
 	} 
 	
 	public Player getWinner() {
-		
+		return null;
 	}
 	public void play() {
 		
