@@ -7,9 +7,9 @@ import java.util.List;
 public class Player extends Person implements Serializable {
 	private static final long serialVersionUID = 3066075689176541330L;
 	private int rank;
-	private String gender;
+	private char gender;
 	private List<Opponent> opponents = new ArrayList<Opponent>();
-	public Player(String firstname, String lastname, String nationnality,int rank,String gender) {
+	public Player(String firstname, String lastname, String nationnality,int rank,char gender) {
 		super(firstname, lastname, nationnality);
 		this.rank=rank;
 		this.gender=gender;
@@ -21,10 +21,10 @@ public class Player extends Person implements Serializable {
 	public void setRank(int rank) {
 		this.rank = rank;
 	}
-	public String getGender() {
+	public char getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
+	public void setGender(char gender) {
 		this.gender = gender;
 	}
 	public List<Opponent> getOpponents() {
