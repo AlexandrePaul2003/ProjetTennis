@@ -9,20 +9,10 @@ public class Court implements Serializable{
 	private int nbSpectator;
 	private Boolean covered;
 	
-	public Court(int nbSpectator,int covered){
+	public Court(int nbSpectator,Boolean covered){
 		this.nbSpectator=nbSpectator;
-		switch(covered) {
-		case 0:
-			this.covered=false;
-			break;
-		case 1:
-			this.covered=true;
-			break;
-		case 2:
-			this.covered=false;
-			System.out.println("Erreur covered non reconnu");
-			break;
-		}
+		this.covered=covered;
+		
 	}
 
 	public Tournament getTouramenet() {

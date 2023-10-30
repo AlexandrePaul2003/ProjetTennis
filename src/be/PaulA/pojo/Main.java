@@ -13,6 +13,7 @@ public class Main {
 	public static void main(String[] args) {
 		PlayerDAO pDAO = new PlayerDAO(ProjectConnection.getInstance());
 		RefereeDAO rDAO = new RefereeDAO(ProjectConnection.getInstance());
+		CourtDAO cDAO = new CourtDAO(ProjectConnection.getInstance());
 		
 		String[] noms = {"Paul", "Pignes", "Poirreaux","Foret","Cappelen","Djokovic","Nadal","Federer","Messi","Ronaldo","Ibra","Neymar","Rony","Dayot"};		
 		String[] prenoms = {"Alexandre", "Paul", "Hercule","Isabelle","Christiane","Novak","Rafa","Roger","Leo","Christiano","ZLATAN","Jean","GOAT","Upamecado"};
@@ -29,12 +30,22 @@ public class Main {
 			pDAO.create(player);
 		}*/
 		
-		List<Referee> r = new ArrayList<Referee>();
+		/*List<Referee> r = new ArrayList<Referee>();
 		for(int i=0;i<16;i++) {
 			r.add(new Referee(noms[rnd.nextInt(12)],"Referee"+i,"Belge"));
 		}
 		for(Referee ref : r) {
 			rDAO.create(ref);
+		}*/
+		List<Court> c = new ArrayList<Court>();
+		for(int i=0;i<8;i++) {
+			c.add(new Court(i*100,false));
+		}
+		for(int i=0;i<8;i++) {
+			c.add(new Court(i*100,true));
+		}
+		for(Court court : c) {
+			cDAO.create(court);
 		}
 		
  	}
