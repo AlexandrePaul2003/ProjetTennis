@@ -10,7 +10,34 @@ public class RefereeDAO extends DAO<Referee>{
 	public RefereeDAO(Connection conn) {
 		super(conn);
 	}
-	public boolean create(Referee obj) {
+	public boolean create(Referee referee) {
+
+		try{
+			Statement  st = this.connect.createStatement();
+			st.executeUpdate("INSERT INTO Personne(pers_nom,pers_prenom,pers_nationnalite) VALUES('"+referee.getLastname()+"','" + referee.getFirstname()+"','"+referee.getNationnality()+"')");
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		try{
+			int id=0;
+			ResultSet result = this.connect.createStatement(
+					
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT pers_id FROM Personne WHERE pers_nom='"+referee.getLastname()+"' and pers_prenom='" + referee.getFirstname()+"' and pers_nationnalite='"+referee.getNationnality()+"'");
+					while(result.next()) {
+						id=result.getInt("pers_id");
+					}
+			System.out.println(id);
+			Statement st = this.connect.createStatement();
+			st.executeUpdate("INSERT INTO Arbitre(pers_id) VALUES("+id+")");
+			
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
 		return true;
 	}
 	
