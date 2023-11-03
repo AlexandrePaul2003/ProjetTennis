@@ -37,6 +37,14 @@ import java.util.List;
 		public void setSets(List<Set> sets) {
 			this.sets = sets;
 		}
+		public static Opponent getOpp(int nMatch,Match m) {
+			List<Player> pl = new ArrayList<Player>();
+			if(m.getSchedule().getType()==ScheduleType.GentlemenSingle||m.getSchedule().getType()==ScheduleType.LadiesSingle) {
+				pl.add(Player.findPlayer(nMatch,m));
+				return new Opponent(pl);
+			}
+			return null;
+		}
 		
 	}
 	
