@@ -1,6 +1,10 @@
 package be.PaulA.pojo;
 
 import java.io.Serializable;
+import java.util.List;
+
+import be.PaulA.project.DAO.CourtDAO;
+import be.PaulA.project.DAO.ProjectConnection;
 
 public class Court implements Serializable{
 	private static final long serialVersionUID = 3066075689178541330L;
@@ -52,6 +56,10 @@ public class Court implements Serializable{
 	}
 	public void release() {
 		
+	}
+	public static List<Court> getAllCourt() {
+		CourtDAO cDAO = new CourtDAO(ProjectConnection.getInstance());
+		return cDAO.find();
 	}
 	 
 	
