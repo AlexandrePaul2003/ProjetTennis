@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.PaulA.pojo.Match;
 import be.PaulA.pojo.Opponent;
 import be.PaulA.pojo.Player;
 import be.PaulA.pojo.ScheduleType;
@@ -25,7 +26,7 @@ public class OpponentDAO extends DAO<Opponent>{
 				if(players[0].getGender()=='F'&&players[0].getGender()=='F') {
 					type="DF";
 				}else {
-					type="DM";
+					type="DMi";
 				}
 			}
 			Statement  st = this.connect.createStatement();
@@ -79,12 +80,25 @@ public class OpponentDAO extends DAO<Opponent>{
 	public Opponent find(int id) {
 		return null;
 	}
-	public Opponent find(ScheduleType type) {
+	public Opponent find(int rank,Match m) {
+		String type=null;
+		switch(m.getSchedule().getType()){
+		case GentlemenDouble: 
+			type="DM";
+			break;
+		case LadiesSingle:
+			type="DF";
+			break;
+		case MixedDouble:
+			type="DMi";
+			break;
+		
+		}
 		List<Player> p = new ArrayList<Player>();
 		try{
 			ResultSet result = this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT pers_id FROM participant");
+			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT pers_id FROM participant p INNER JOIN Duo d on d.duo_id=p.duo_id WHERE duo_rank="+rank+" and duo_type='"+type+"'");
 			while(result.next()) {
 				PlayerDAO pDAO = new PlayerDAO(this.connect);
 				p.add(pDAO.find(result.getInt("pers_id")));

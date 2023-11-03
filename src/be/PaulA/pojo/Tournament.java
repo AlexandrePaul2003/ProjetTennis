@@ -9,8 +9,15 @@ public class Tournament {
 	private List<Court> courts = new ArrayList<Court>();
 	private List<Referee> referees = new ArrayList<Referee>();
 	
-	public Tournament() {
-		
+	public Tournament(String name) {
+		this.name=name;
+		schedules[0] = new Schedule(ScheduleType.GentlemenSingle,this);
+		schedules[1] = new Schedule(ScheduleType.LadiesSingle,this);
+		schedules[2] = new Schedule(ScheduleType.GentlemenDouble,this);
+		schedules[3] = new Schedule(ScheduleType.LaidesDouble,this);
+		schedules[4] = new Schedule(ScheduleType.MixedDouble,this);
+		referees = Referee.getAllRefs();
+		courts = Court.getAllCourt();
 	}
 	public void Play() {
 		

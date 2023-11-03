@@ -68,4 +68,20 @@ public class PlayerDAO extends DAO<Player>{
 		}
 		return p;
 	}
+	public Player find(int rank,char sexe) {
+		Player p = null;
+		try{
+			ResultSet result = this.connect.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT * FROM Joueur j INNER JOIN Personne p ON j.pers_id=p.pers_id WHERE j.pers_rank="+rank+"AND pers_sexe='"+sexe+"'");
+			while(result.next()) {
+				p= new Player(result.getString("pers_nom"),result.getString("pers_prenom"),result.getString("pers_nationnalite"),result.getInt("pers_rank"),result.getString("pers_sexe").charAt(0));
+			}
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return p;
+	}
 }

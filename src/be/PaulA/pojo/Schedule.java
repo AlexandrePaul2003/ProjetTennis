@@ -1,16 +1,28 @@
 package be.PaulA.pojo;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Schedule {
 	private ScheduleType type;
 	private int actualRound;
-	Queue<Match> matches = new LinkedList<Match>();
-	private Tournament touramenet;
+	List<Match> matches = new ArrayList<Match>();
+	private Tournament tournamenet;
 	
-	public Schedule() {
-		
+	public Schedule(ScheduleType type,Tournament tournamenet) {
+		this.type=type;
+		this.tournamenet=tournamenet;
+		if(type==ScheduleType.GentlemenSingle||type==ScheduleType.LadiesSingle) {
+			for(int i =0;i<64;i++) {
+				matches.add(new Match(180,1,this));
+			}
+		} else {
+			for(int i =0;i<32;i++) {
+				matches.add(new Match(180,1,this));
+			}
+		}
 	}
 	
 	
@@ -27,17 +39,17 @@ public class Schedule {
 	public void setActualRound(int actualRound) {
 		this.actualRound = actualRound;
 	}
-	public Queue<Match> getMatches() {
+	public List<Match> getMatches() {
 		return matches;
 	}
-	public void setMatches(Queue<Match> matches) {
+	public void setMatches(List<Match> matches) {
 		this.matches = matches;
 	}
 	public Tournament getTouramenet() {
-		return touramenet;
+		return tournamenet;
 	}
 	public void setTouramenet(Tournament touramenet) {
-		this.touramenet = touramenet;
+		this.tournamenet = touramenet;
 	}
 	
 	

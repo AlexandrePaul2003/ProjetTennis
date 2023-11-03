@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.PaulA.project.DAO.OpponentDAO;
+import be.PaulA.project.DAO.ProjectConnection;
+
 	public class Opponent implements Serializable {
 		private static final long serialVersionUID = 3066075689176541330L;
 		private List<Player> players;
@@ -42,6 +45,13 @@ import java.util.List;
 			if(m.getSchedule().getType()==ScheduleType.GentlemenSingle||m.getSchedule().getType()==ScheduleType.LadiesSingle) {
 				pl.add(Player.findPlayer(nMatch,m));
 				return new Opponent(pl);
+			} else {
+				if(m.getSchedule().getType()==ScheduleType.GentlemenDouble||m.getSchedule().getType()==ScheduleType.LaidesDouble||m.getSchedule().getType()==ScheduleType.MixedDouble) {
+					OpponentDAO oDAO = new OpponentDAO(ProjectConnection.getInstance());
+					return oDAO.find(nMatch,m);
+				} else {
+					
+				}
 			}
 			return null;
 		}
