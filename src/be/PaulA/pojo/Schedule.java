@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class Schedule {
 	private ScheduleType type;
-	private int actualRound;
+	private int actualRound=0;
 	List<Match> matches = new ArrayList<Match>();
 	private Tournament tournamenet;
 	
@@ -54,12 +54,65 @@ public class Schedule {
 	
 	
 	public int nbWinningSet() {
-		return 0;
+		if(type==ScheduleType.GentlemenSingle) {
+			return 3;
+		}else {
+			return 2;
+		}
 	}
 	public void playNextRound() {
-		
+		actualRound++;
+		Player temp=null;
+		Boolean noCourts=false;
+		Boolean noRef=false;
+		for(Match m : matches) {
+			if(m.getRound()==actualRound) {
+				if(m.getCourt()!=null&&m.getRef()!=null) {
+					m.play();
+					if(temp==null) {
+						temp=m.getWinner();
+					}else {
+						matches.add(new Match(180,actualRound+1,this));
+						temp=null;
+					}
+				}else {
+					if(m.getCourt()==null&&noCourts==false) {
+							Court c = getCourtAva();
+							if(c!=null) {
+								m.setCourt(c);
+							}else {
+								noCourts=true;
+							}	
+					}
+					if(m.getRef()==null&&noRef==false) {
+						Referee r = getRefAva();
+						if(r!=null) {
+							m.setRef(r);
+						}else {
+							noRef=true;
+						}	
+					}
+				}
+			}
+		}
 	}
 	public Player getWinner(){
+		return null;
+	}
+	public Referee getRefAva() {
+		for(Referee r : tournamenet.getReferees()) {
+			if(r.available()) {
+				return r;
+			}
+		}
+		return null;
+	}
+	public Court getCourtAva() {
+		for(Court c : tournamenet.getCourts()) {
+			if(c.available()) {
+				return c;
+			}
+		}
 		return null;
 	}
 	
