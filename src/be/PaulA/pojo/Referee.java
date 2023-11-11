@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.PaulA.project.DAO.ProjectConnection;
+import be.PaulA.project.DAO.RefereeDAO;
+
 public class Referee extends Person implements Serializable {
 	private static final long serialVersionUID = 3066075689177541330L;
 	private Match currMatch;
@@ -34,6 +37,11 @@ public class Referee extends Person implements Serializable {
 	}
 	public void release() {
 		
+	}
+	
+	public static List<Referee> getAllRefs(){
+		RefereeDAO rDAO = new RefereeDAO(ProjectConnection.getInstance());
+		return rDAO.find();
 	}
 
 }

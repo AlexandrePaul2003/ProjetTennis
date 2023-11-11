@@ -7,16 +7,28 @@ import java.util.List;
 
 public class Match {
 	private LocalDate date;
-	private Duration duration;
+	private int duration;
 	private int round;
 	private Schedule schedule;
-	private Court court;
+	private Court court=null;
 	private List<Set> sets = new ArrayList<Set>();
 	private Opponent opp1;
 	private Opponent opp2;
-	private Referee ref;
+	private Referee ref=null;
 	
-	public Match () {
+	public Match (int duration,int round,Schedule schedule) {
+		date=LocalDate.now();
+		this.duration=duration;
+		this.round=round;
+		this.schedule=schedule;
+		System.out.println(this.schedule.getMatches().size());
+		opp1=Opponent.getOpp(this.schedule.getMatches().size()+1,this);
+		if(schedule.getType()==ScheduleType.GentlemenSingle||schedule.getType()==ScheduleType.LadiesSingle) {
+			opp2=Opponent.getOpp(128-this.schedule.getMatches().size()-1,this);
+		}else {
+			opp2=Opponent.getOpp(64-this.schedule.getMatches().size()-1,this);
+		}
+		
 		
 	}
 
@@ -28,11 +40,11 @@ public class Match {
 		this.date = date;
 	}
 
-	public Duration getDuration() {
+	public int getDuration() {
 		return duration;
 	}
 
-	public void setDuration(Duration duration) {
+	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 
