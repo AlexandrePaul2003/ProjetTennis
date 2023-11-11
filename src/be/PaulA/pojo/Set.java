@@ -1,17 +1,48 @@
 package be.PaulA.pojo;
 
+import java.util.Random;
+
 public class Set {
-	private Match match;
-	private Opponent winner;
-	private int scoreJ1;
-	private int scoreJ2;
+	protected Match match;
+	protected Opponent winner;
+	protected int scoreJ1;
+	protected int scoreJ2;
 	
 	public Set(Match match) {
 		this.match=match;
 	}
 	
 	public void play() {
-		
+		while(scoreJ1<6||scoreJ2<6) {
+			getPointResult();
+		}
+		if(Math.abs(scoreJ1-scoreJ2)<2) {
+			getPointResult();
+			if (scoreJ1==scoreJ2) {
+				getJeuDecisif();
+			}
+		}
+		if(scoreJ1>scoreJ2) {
+			match.getOpp1().getSets().add(this);
+		}else {
+			match.getOpp2().getSets().add(this);
+		}
+	}
+	protected void getPointResult() {
+		Random rnd = new Random();
+		if(rnd.nextInt(2)==1) {
+			scoreJ1++;
+		}else {
+			scoreJ2++;
+		}
+	}
+	private void getJeuDecisif() {
+		Random rnd = new Random();
+		if(rnd.nextInt(2)==1) {
+			scoreJ1++;
+		}else {
+			scoreJ2++;
+		}
 	}
 
 	public Match getMatch() {

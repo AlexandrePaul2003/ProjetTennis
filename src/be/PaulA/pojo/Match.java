@@ -106,21 +106,30 @@ public class Match {
 	
 	public Opponent getWinner() {
 		int sJ1=0,sJ2=0;
-		for(Set s : sets) {
-			if(s.getWinner()==opp1) {
-				sJ1++;
-			}else {
-				sJ2++;
+		if(sets.size()>0) {
+			for(Set s : sets) {
+				if(s.getWinner()==opp1) {
+					sJ1++;
+				}else {
+					sJ2++;
+				}
 			}
+			return sJ1>sJ2 ? opp1 : opp2;
+		}else {
+			return null;
 		}
-		return sJ1>sJ2 ? opp1 : opp2;
 	}
 	public void play() {
+		Set actualSet=null;
 		while(opp1.getSets().size()!=schedule.nbWinningSet()||opp2.getSets().size()!=schedule.nbWinningSet()) {
 			if((schedule.getType()==ScheduleType.GentlemenSingle&&sets.size()==5)||(schedule.getType()!=ScheduleType.GentlemenSingle&&sets.size()==3)) {
-				sets.add(new TieBreak(this));
+				actualSet =new TieBreak(this);
+				actualSet.play();
+				sets.add(actualSet);
 			}else {
-				sets.add(new Set(this));
+				actualSet =new Set(this);
+				actualSet.play();
+				sets.add(actualSet);
 			}
 		}
 	}
