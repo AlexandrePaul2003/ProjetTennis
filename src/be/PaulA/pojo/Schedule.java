@@ -62,7 +62,7 @@ public class Schedule {
 	}
 	public void playNextRound() {
 		actualRound++;
-		Player temp=null;
+		Opponent temp=null;
 		Boolean noCourts=false;
 		Boolean noRef=false;
 		for(Match m : matches) {
@@ -101,7 +101,7 @@ public class Schedule {
 	public Player getWinner(){
 		return null;
 	}
-	public Referee getRefAva() {
+	private Referee getRefAva() {
 		for(Referee r : tournamenet.getReferees()) {
 			if(r.available()) {
 				return r;
@@ -109,7 +109,7 @@ public class Schedule {
 		}
 		return null;
 	}
-	public Court getCourtAva() {
+	private Court getCourtAva() {
 		for(Court c : tournamenet.getCourts()) {
 			if(c.available()) {
 				return c;

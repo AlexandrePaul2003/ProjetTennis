@@ -36,7 +36,7 @@ public class Referee extends Person implements Serializable {
 		return currMatch == null ? false : true;
 	}
 	public void release() {
-		currMatch
+		currMatch=null;
 	}
 	
 	public static List<Referee> getAllRefs(){
