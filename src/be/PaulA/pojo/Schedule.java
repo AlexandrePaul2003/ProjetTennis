@@ -75,6 +75,8 @@ public class Schedule {
 						matches.add(new Match(180,actualRound+1,this));
 						temp=null;
 					}
+					m.getRef().release();
+					m.getCourt().release();
 				}else {
 					if(m.getCourt()==null&&noCourts==false) {
 							Court c = getCourtAva();
