@@ -33,10 +33,10 @@ public class Referee extends Person implements Serializable {
 	}
 
 	public boolean available() {
-		return true;
+		return currMatch == null ? false : true;
 	}
 	public void release() {
-		
+		currMatch
 	}
 	
 	public static List<Referee> getAllRefs(){

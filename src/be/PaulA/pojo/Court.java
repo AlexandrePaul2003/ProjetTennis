@@ -52,10 +52,10 @@ public class Court implements Serializable{
 	}
 	
 	public boolean available() {
-		return true;
+		return currMatch == null ? false : true;
 	}
 	public void release() {
-		
+		currMatch=null;
 	}
 	public static List<Court> getAllCourt() {
 		CourtDAO cDAO = new CourtDAO(ProjectConnection.getInstance());
