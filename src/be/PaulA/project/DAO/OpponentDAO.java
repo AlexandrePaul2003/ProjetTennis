@@ -20,10 +20,10 @@ public class OpponentDAO extends DAO<Opponent>{
 		Player[] players = o.getPlayer().stream().toArray(Player[]::new);
 		String type = null;
 		try{
-			if(players[0].getGender()=='M'&&players[0].getGender()=='M') {
+			if(players[0].getGender()=='M'&&players[1].getGender()=='M') {
 				type="DM";
 			}else {
-				if(players[0].getGender()=='F'&&players[0].getGender()=='F') {
+				if(players[0].getGender()=='F'&&players[1].getGender()=='F') {
 					type="DF";
 				}else {
 					type="DMi";
@@ -47,7 +47,7 @@ public class OpponentDAO extends DAO<Opponent>{
 					}
 			result = this.connect.createStatement(		
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT pers_id FROM Personne WHERE pers_nom='"+players[0].getLastname()+"' and pers_prenom='" + players[0].getFirstname()+"' and pers_nationnalite='"+players[0].getNationnality()+"'");
+					ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT pers_id FROM Personne WHERE pers_nom='"+players[0].getLastname()+"' and pers_prenom='" + players[0].getFirstname()+"' and pers_nationnalite='"+players[0].getNationnality()+"' ORDER BY pers_id DESC LIMIT 1");
 					while(result.next()) {
 						pid=result.getInt("pers_id");
 					}
@@ -56,7 +56,7 @@ public class OpponentDAO extends DAO<Opponent>{
 			
 			result = this.connect.createStatement(		
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT pers_id FROM Personne WHERE pers_nom='"+players[1].getLastname()+"' and pers_prenom='" + players[1].getFirstname()+"' and pers_nationnalite='"+players[1].getNationnality()+"'");
+					ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT pers_id FROM Personne WHERE pers_nom='"+players[1].getLastname()+"' and pers_prenom='" + players[1].getFirstname()+"' and pers_nationnalite='"+players[1].getNationnality()+"'  ORDER BY pers_id DESC LIMIT 1");
 					while(result.next()) {
 						pid=result.getInt("pers_id");
 					}
@@ -86,28 +86,30 @@ public class OpponentDAO extends DAO<Opponent>{
 		case GentlemenDouble: 
 			type="DM";
 			break;
-		case LadiesSingle:
+		case LaidesDouble:
 			type="DF";
 			break;
 		case MixedDouble:
-			type="DMi";
+			type="Dmi";
 			break;
 		
 		}
 		List<Player> p = new ArrayList<Player>();
+		Opponent o= null;
 		try{
 			ResultSet result = this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT pers_id FROM participant p INNER JOIN Duo d on d.duo_id=p.duo_id WHERE duo_rank="+rank+" and duo_type='"+type+"'");
+			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT duo_rank,p.FK_pers_id FROM participant p INNER JOIN Duo d on d.duo_id=p.FK_duo_id WHERE duo_rank="+rank+" and duo_type='"+type+"'");
 			while(result.next()) {
 				PlayerDAO pDAO = new PlayerDAO(this.connect);
-				p.add(pDAO.find(result.getInt("pers_id")));
+				p.add(pDAO.find(result.getInt("FK_pers_id")));
+				o = new Opponent(p,result.getInt("duo_rank"));
 			}
 			
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		return new Opponent(p);
+		return o;
 	}
 }

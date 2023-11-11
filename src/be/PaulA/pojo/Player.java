@@ -43,7 +43,7 @@ public class Player extends Person implements Serializable {
 			p=pDAO.find(nMatch,'M');
 		} else {
 			if(m.getSchedule().getType()==ScheduleType.LadiesSingle) {
-				p=pDAO.find(nMatch,'M');
+				p=pDAO.find(nMatch,'F');
 			} else {
 				p=null;
 			}

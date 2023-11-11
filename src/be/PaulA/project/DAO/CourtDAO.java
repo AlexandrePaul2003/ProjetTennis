@@ -38,10 +38,10 @@ public class CourtDAO extends DAO<Court>{
 		try{
 			ResultSet result = this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT * FROM Court");
+			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT * FROM Cours");
 			while(result.next()) {
-				Boolean covered = result.getInt("cours_covered")==1 ? true  :false ;
-				courts.add(new Court(result.getInt("cours_nbrPers"),covered));
+				Boolean covered = result.getInt("cours_couverture")==1 ? true  :false ;
+				courts.add(new Court(result.getInt("cours_nbrPlaces"),covered));
 			}
 			
 		}

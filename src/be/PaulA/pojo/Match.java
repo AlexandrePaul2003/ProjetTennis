@@ -23,7 +23,12 @@ public class Match {
 		this.schedule=schedule;
 		System.out.println(this.schedule.getMatches().size());
 		opp1=Opponent.getOpp(this.schedule.getMatches().size()+1,this);
-		opp2=Opponent.getOpp(128-this.schedule.getMatches().size()-1,this);
+		if(schedule.getType()==ScheduleType.GentlemenSingle||schedule.getType()==ScheduleType.LadiesSingle) {
+			opp2=Opponent.getOpp(128-this.schedule.getMatches().size()-1,this);
+		}else {
+			opp2=Opponent.getOpp(64-this.schedule.getMatches().size()-1,this);
+		}
+		
 		
 	}
 

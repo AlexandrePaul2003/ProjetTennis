@@ -57,7 +57,7 @@ public class RefereeDAO extends DAO<Referee>{
 		try{
 			ResultSet result = this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT * FROM Arbitre a INNERJOIN Personne p ON a.pers_id=p.pers_id");
+			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT * FROM Arbitre a INNER JOIN Personne p ON a.pers_id=p.pers_id");
 			while(result.next()) {
 				refs.add(new Referee(result.getString("pers_nom"),result.getString("pers_prenom"),result.getString("pers_nationnalite")));
 			}
