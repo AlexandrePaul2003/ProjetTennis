@@ -21,13 +21,22 @@ public class Match {
 		this.duration=duration;
 		this.round=round;
 		this.schedule=schedule;
-		System.out.println(this.schedule.getMatches().size());
 		opp1=Opponent.getOpp(this.schedule.getMatches().size()+1,this);
 		if(schedule.getType()==ScheduleType.GentlemenSingle||schedule.getType()==ScheduleType.LadiesSingle) {
 			opp2=Opponent.getOpp(128-this.schedule.getMatches().size()-1,this);
 		}else {
 			opp2=Opponent.getOpp(64-this.schedule.getMatches().size()-1,this);
 		}
+		
+		
+	}
+	public Match (int duration,int round,Schedule schedule,Opponent opp1,Opponent opp2) {
+		date=LocalDate.now();
+		this.duration=duration;
+		this.round=round;
+		this.schedule=schedule;
+		this.opp1=opp1;
+		this.opp2=opp2;
 		
 		
 	}
@@ -120,9 +129,11 @@ public class Match {
 		}
 	}
 	public void play() {
+		opp1.setSets(new ArrayList<Set>());
+		opp2.setSets(new ArrayList<Set>());
 		Set actualSet=null;
-		while(opp1.getSets().size()!=schedule.nbWinningSet()||opp2.getSets().size()!=schedule.nbWinningSet()) {
-			if((schedule.getType()==ScheduleType.GentlemenSingle&&sets.size()==5)||(schedule.getType()!=ScheduleType.GentlemenSingle&&sets.size()==3)) {
+		while(opp1.getSets().size()<schedule.nbWinningSet()&&opp2.getSets().size()<schedule.nbWinningSet()) {
+			if((schedule.getType()==ScheduleType.GentlemenSingle&&sets.size()==4)||(schedule.getType()!=ScheduleType.GentlemenSingle&&sets.size()==2)) {
 				actualSet =new TieBreak(this);
 				actualSet.play();
 				sets.add(actualSet);
@@ -132,6 +143,23 @@ public class Match {
 				sets.add(actualSet);
 			}
 		}
+	}
+	@Override
+	public String toString() {
+		String rep=opp1.getSets().size()+"-"+opp2.getSets().size()+"( ";
+		for(Set s : sets) {
+			rep += s.toString()+" ";
+			
+		}
+		rep +=" ) row : "+round;
+		return rep;
+	}
+	@Override 
+	public int hashCode() {
+		return super.hashCode();
+	}
+	public boolean equals(Object o) {
+		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
 	}
 
 }

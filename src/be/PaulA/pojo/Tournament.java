@@ -19,8 +19,10 @@ public class Tournament {
 		referees = Referee.getAllRefs();
 		courts = Court.getAllCourt();
 	}
-	public void Play() {
-		
+	public void play() {
+		for(Schedule s : schedules) {
+			s.playNextRound();
+		}
 	}
 	public String getName() {
 		return name;

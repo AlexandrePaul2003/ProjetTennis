@@ -13,7 +13,7 @@ public class Set {
 	}
 	
 	public void play() {
-		while(scoreJ1<6||scoreJ2<6) {
+		while(scoreJ1<6&&scoreJ2<6) {
 			getPointResult();
 		}
 		if(Math.abs(scoreJ1-scoreJ2)<2) {
@@ -24,8 +24,10 @@ public class Set {
 		}
 		if(scoreJ1>scoreJ2) {
 			match.getOpp1().getSets().add(this);
+			winner=match.getOpp1();
 		}else {
 			match.getOpp2().getSets().add(this);
+			winner=match.getOpp2();
 		}
 	}
 	protected void getPointResult() {
@@ -75,6 +77,10 @@ public class Set {
 
 	public void setScoreJ2(int scoreJ2) {
 		this.scoreJ2 = scoreJ2;
+	}
+	@Override 
+	public String toString() {
+		return scoreJ1+"-"+scoreJ2;
 	}
 	
 }

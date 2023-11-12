@@ -52,7 +52,7 @@ public class Court implements Serializable{
 	}
 	
 	public boolean available() {
-		return currMatch == null ? false : true;
+		return currMatch == null ? true : false;
 	}
 	public void release() {
 		currMatch=null;
