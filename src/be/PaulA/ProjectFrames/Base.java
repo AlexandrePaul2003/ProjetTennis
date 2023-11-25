@@ -31,8 +31,8 @@ public class Base extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Base frame = new Base();
-					frame.setVisible(true);
+					//Base frame = new Base();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,49 +43,8 @@ public class Base extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Base() {
-		t = new Tournament("Rolan Garros");
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 760, 595);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-		
-		
-		
-		DefaultTableModel model = new DefaultTableModel(new String[] {"Joueur1","Joueur2","Match nbr"},0);
-		int i=1;
-		for(Match m : t.getSchedules()[0].getMatches()) {
-			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
-			model.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
-			}
-			i++;
-		}
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 724, 484);
-		contentPane.add(scrollPane);
-		
-		table = new JTable(model);
-		scrollPane.setViewportView(table);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(308, 506, 118, 39);
-		contentPane.add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				//t.play();
-				t.getSchedules()[0].playNextRound();
-				Base testPage = new Base(t);
-				testPage.setVisible(true);
-			}
-		});
-	}
-	public Base(Tournament t) {
+	
+	public Base(Tournament t,int currTurn,int Nschedule) {
 		this.t=t;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 760, 595);
@@ -97,8 +56,8 @@ public class Base extends JFrame {
 		
 		DefaultTableModel model = new DefaultTableModel(new String[] {"Joueur1","Joueur2","Result"/*,"Winner"*/},0);
 		int i=1;
-		for(Match m : t.getSchedules()[0].getMatches()) {
-			if((m.getOpp1()!=null&&m.getOpp2()!=null)&&m.getRound()==t.getSchedules()[0].getActualRound()-1) {
+		for(Match m : t.getSchedules()[Nschedule].getMatches()) {
+			if((m.getOpp1()!=null&&m.getOpp2()!=null)&&m.getRound()==currTurn) {
 				//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 				model.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.toString()/*,m.getWinner().toString()*/});
 				//t.getSchedules()[0].getMatches().remove(m);
@@ -118,21 +77,12 @@ public class Base extends JFrame {
 		table = new JTable(model);
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Fermer");
 		btnNewButton.setBounds(308, 506, 118, 39);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				//t.play();
-				if(t.getSchedules()[0].getWinner()==null) {
-					t.getSchedules()[0].playNextRound();
-					System.out.println("Il est null");
-				}else {
-					JOptionPane.showMessageDialog(null, "AND THE WINNER IS : " +t.getSchedules()[0].getWinner().toString());
-					System.out.println("Il est pas null");
-				}
-				Base testPage = new Base(t);
-				testPage.setVisible(true);
+				dispose();
 			}
 		});
 	}
