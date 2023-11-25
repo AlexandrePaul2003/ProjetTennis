@@ -110,6 +110,13 @@ public class OpponentDAO extends DAO<Opponent>{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		if(o!=null)
 		return o;
+		else {
+			ArrayList<Player> players = new ArrayList<Player>();
+			Player p1 = new Player("null","null","null",0,'F');
+			players.add(p1);
+			return new Opponent(players,0);
+		}
 	}
 }
