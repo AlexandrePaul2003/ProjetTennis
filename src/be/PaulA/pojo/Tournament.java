@@ -27,10 +27,8 @@ public class Tournament {
 		for(Schedule s : schedules) {
 			if(s.getWinner()==null) {
 				s.playNextRound();
-				//System.out.println("Il est null");
 			}else {
 				JOptionPane.showMessageDialog(null, "AND THE WINNER IS : " +s.getWinner().toString());
-				//System.out.println("Il est pas null");
 			}
 		}
 	}
@@ -58,6 +56,16 @@ public class Tournament {
 	public void setReferees(List<Referee> referees) {
 		this.referees = referees;
 	} 
+	public String toString() {
+		return "nom : "+name;
+	}
+	public int hashCode() {
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object o) {
+		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
+	}
 	
 	
 }

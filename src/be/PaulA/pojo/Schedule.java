@@ -66,21 +66,14 @@ public class Schedule {
 		Boolean noCourts=false;
 		Boolean noRef=false;
 		Boolean hasPlayedAllMatches =false;
-		int debug=0;
-		System.out.println(actualRound);
 		while(!hasPlayedAllMatches) {
 			try {
 			hasPlayedAllMatches = true;
 			noRef=false;
 			noCourts=false;
 			for(Match m : matches) {
-				//System.out.println("match playing");
 				if(m.getRound()==actualRound&&m.getWinner()==null) {
-					//System.out.println("actually playing");
-					debug++;
-					//System.out.println(debug);
 					if(m.getCourt()!=null&&m.getRef()!=null) {
-						//System.out.println("etered playing condition");
 						m.play();
 						if(temp==null) {
 							temp=m.getWinner();
@@ -113,7 +106,6 @@ public class Schedule {
 					hasPlayedAllMatches=false;
 				}else {
 					if(m.getRound()<actualRound+1) {
-						//System.out.println("round match removed"+m.getRound());
 						//matches.remove(m);
 					}
 				}
@@ -126,27 +118,10 @@ public class Schedule {
 		actualRound++;
 	}
 	public Opponent getWinner() {
-		/*System.out.println("Entrée dans getWinner");
-		System.out.println("nbr matches "+matches.size());
-		if(matches.size()==1) {
-			System.out.println("Entrée dans cond de getWinner");
-			for(Match m : matches) {
-				return m.getWinner();
-			}
-		}else {
-			return null;
-		}
-		return null;*/
 		if(((type==ScheduleType.LadiesSingle||type==ScheduleType.GentlemenSingle)&&actualRound==8)||(actualRound==7&&(type==ScheduleType.GentlemenDouble||type==ScheduleType.LaidesDouble||type==ScheduleType.MixedDouble))) {
 			Match[] strings = matches.toArray(Match[]::new);
 			System.out.println("winner"+strings[strings.length-1].getWinner());
 			return strings[strings.length-1].getWinner();
-			/*Opponent o=null;
-			for(Match m : matches) {
-				o=m.getWinner();
-			}
-			System.out.println("winner "+o.toString());
-			return o;*/
 		}else {
 			return null;
 		}
@@ -166,6 +141,17 @@ public class Schedule {
 			}
 		}
 		return null;
+	}
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+	public int hashCode() {
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object o) {
+		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
 	}
 	
 	

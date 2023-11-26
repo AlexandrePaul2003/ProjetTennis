@@ -12,7 +12,6 @@ import be.PaulA.project.DAO.ProjectConnection;
 	public class Opponent implements Serializable {
 		private static final long serialVersionUID = 3066075689176541330L;
 		private List<Player> players;
-		private List<Match> matches = new ArrayList<Match>();
 		private List<Set> sets = new ArrayList<Set>();
 		private int rank;
 		
@@ -29,13 +28,7 @@ import be.PaulA.project.DAO.ProjectConnection;
 			this.players = player;
 		}
 
-		public List<Match> getMatches() {
-			return matches;
-		}
-
-		public void setMatches(List<Match> matches) {
-			this.matches = matches;
-		}
+		
 
 		public List<Set> getSets() {
 			return sets;
@@ -82,6 +75,13 @@ import be.PaulA.project.DAO.ProjectConnection;
 				}
 			}
 			return re;
+		}
+		public int hashCode() {
+			return super.hashCode();
+		}
+		@Override
+		public boolean equals(Object o) {
+			return this.toString().hashCode()==o.toString().hashCode() ? true : false;
 		}
 		
 	}

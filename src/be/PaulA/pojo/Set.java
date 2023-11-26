@@ -82,5 +82,13 @@ public class Set {
 	public String toString() {
 		return scoreJ1+"-"+scoreJ2;
 	}
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object o) {
+		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
+	}
 	
 }

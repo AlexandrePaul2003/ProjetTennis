@@ -73,7 +73,6 @@ public class Tous extends JFrame {
 		int i=1;
 		for(Match m : t.getSchedules()[0].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
 			}
 			i++;
@@ -93,7 +92,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[1].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model1.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
 			}
 			i++;
@@ -112,7 +110,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[2].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model2.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
 			}
 			i++;
@@ -131,7 +128,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[3].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model3.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
 			}
 			i++;
@@ -151,7 +147,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[4].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model4.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
 			}
 			i++;
@@ -196,8 +191,6 @@ public class Tous extends JFrame {
 		bouton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				t.play();
-				
-				System.out.println("On été joué");
 				Tous testPage = new Tous(t,1);
 				testPage.setVisible(true);
 			}
@@ -247,7 +240,6 @@ public class Tous extends JFrame {
 		int i=1;
 		for(Match m : t.getSchedules()[0].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null&&m.getRound()==currRound) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.getOpp1().getSets().size()+"-"+m.getOpp2().getSets().size()});
 			}
 			i++;
@@ -266,7 +258,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[1].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null&&m.getRound()==currRound) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model1.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.getOpp1().getSets().size()+"-"+m.getOpp2().getSets().size()});
 			}
 			i++;
@@ -284,7 +275,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[2].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null&&m.getRound()==currRound) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model2.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.getOpp1().getSets().size()+"-"+m.getOpp2().getSets().size()});
 			}
 			i++;
@@ -303,7 +293,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[3].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null&&m.getRound()==currRound) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model3.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.getOpp1().getSets().size()+"-"+m.getOpp2().getSets().size()});
 			}
 			i++;
@@ -322,7 +311,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[4].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null&&m.getRound()==currRound) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model4.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.getOpp1().getSets().size()+"-"+m.getOpp2().getSets().size()});
 			}
 			i++;
