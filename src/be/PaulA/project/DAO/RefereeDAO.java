@@ -29,7 +29,6 @@ public class RefereeDAO extends DAO<Referee>{
 					while(result.next()) {
 						id=result.getInt("pers_id");
 					}
-			System.out.println(id);
 			Statement st = this.connect.createStatement();
 			st.executeUpdate("INSERT INTO Arbitre(pers_id) VALUES("+id+")");
 			

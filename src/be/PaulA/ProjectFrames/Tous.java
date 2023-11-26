@@ -73,7 +73,6 @@ public class Tous extends JFrame {
 		int i=1;
 		for(Match m : t.getSchedules()[0].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
 			}
 			i++;
@@ -93,7 +92,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[1].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model1.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
 			}
 			i++;
@@ -112,7 +110,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[2].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model2.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
 			}
 			i++;
@@ -131,7 +128,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[3].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model3.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
 			}
 			i++;
@@ -151,7 +147,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[4].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model4.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),i});
 			}
 			i++;
@@ -165,22 +160,6 @@ public class Tous extends JFrame {
 		JButton bouton = new JButton("Avancer");
 		bouton.setBounds(1005, 512, 89, 23);
 		contentPane.add(bouton);
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(10, -4, 101, 22);
-		contentPane.add(menuBar);
-		JMenu menu = new JMenu("Détails");
-		menuBar.add(menu);
-		JMenuItem m1 = new JMenuItem("Simple homme");
-		JMenuItem m2 = new JMenuItem("Simple femme ");
-		JMenuItem m3 = new JMenuItem("Double hommes");
-		JMenuItem m4 = new JMenuItem("Double femme");
-		JMenuItem m5 = new JMenuItem("Double mixte");
-		menu.add(m1);
-		menu.add(m2);
-		menu.add(m3);
-		menu.add(m4);
-		menu.add(m5);
 		
 		JLabel lblNewLabel = new JLabel("Simple homme");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -206,19 +185,12 @@ public class Tous extends JFrame {
 		lblDoubleMixte.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDoubleMixte.setBounds(960, 6, 111, 14);
 		contentPane.add(lblDoubleMixte);
-		m1.addActionListener( this::ouvrirMenu );
-		m2.addActionListener( this::ouvrirMenu );
-		m3.addActionListener( this::ouvrirMenu );
-		m4.addActionListener( this::ouvrirMenu );
-		m5.addActionListener( this::ouvrirMenu );
 		
 		
 		
 		bouton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				t.play();
-				
-				System.out.println("On été joué");
 				Tous testPage = new Tous(t,1);
 				testPage.setVisible(true);
 			}
@@ -268,7 +240,6 @@ public class Tous extends JFrame {
 		int i=1;
 		for(Match m : t.getSchedules()[0].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null&&m.getRound()==currRound) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.getOpp1().getSets().size()+"-"+m.getOpp2().getSets().size()});
 			}
 			i++;
@@ -287,7 +258,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[1].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null&&m.getRound()==currRound) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model1.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.getOpp1().getSets().size()+"-"+m.getOpp2().getSets().size()});
 			}
 			i++;
@@ -305,7 +275,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[2].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null&&m.getRound()==currRound) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model2.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.getOpp1().getSets().size()+"-"+m.getOpp2().getSets().size()});
 			}
 			i++;
@@ -324,7 +293,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[3].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null&&m.getRound()==currRound) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model3.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.getOpp1().getSets().size()+"-"+m.getOpp2().getSets().size()});
 			}
 			i++;
@@ -343,7 +311,6 @@ public class Tous extends JFrame {
 		i=1;
 		for(Match m : t.getSchedules()[4].getMatches()) {
 			if(m.getOpp1()!=null&&m.getOpp2()!=null&&m.getRound()==currRound) {
-			//System.out.println(m.getOpp1().toString()+"    "+m.getOpp2().toString());
 			model4.addRow(new Object[] {m.getOpp1().toString(),m.getOpp2().toString(),m.getOpp1().getSets().size()+"-"+m.getOpp2().getSets().size()});
 			}
 			i++;

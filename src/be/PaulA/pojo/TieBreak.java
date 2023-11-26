@@ -9,7 +9,7 @@ public class TieBreak extends Set{
 	}
 		@Override
 		public void play() {
-			while(scoreJ1<6&&scoreJ2<6) {
+			while(scoreJ1<10&&scoreJ2<10) {
 				getPointResult();
 			}
 			if(Math.abs(scoreJ1-scoreJ2)<2) {
@@ -28,15 +28,7 @@ public class TieBreak extends Set{
 		}
 		
 		private void getJeuDecisif() {
-			int sscoreJ1=0,sscoreJ2=0;
-			Random rnd = new Random();
-			while(Math.abs(sscoreJ1-sscoreJ2)<2&&scoreJ1<10&&scoreJ2<10) {
-				if(rnd.nextInt(2)==1) {
-					scoreJ1++;
-				}else {
-					scoreJ2++;
-				}
-			}
+			getPointResult();
 		
 		}
 	

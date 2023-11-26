@@ -10,7 +10,6 @@ import be.PaulA.project.DAO.RefereeDAO;
 public class Referee extends Person implements Serializable {
 	private static final long serialVersionUID = 3066075689177541330L;
 	private Match currMatch;
-	private List<Tournament> tournaments = new ArrayList<Tournament>();
 	public Referee(String firstname, String lastname, String nationnality) {
 		super(firstname,lastname,nationnality);
 		
@@ -24,13 +23,7 @@ public class Referee extends Person implements Serializable {
 		this.currMatch = currMatch;
 	}
 
-	public List<Tournament> getTournaments() {
-		return tournaments;
-	}
-
-	public void setTournaments(List<Tournament> tournaments) {
-		this.tournaments = tournaments;
-	}
+	
 
 	public boolean available() {
 		return currMatch == null ? true : false;

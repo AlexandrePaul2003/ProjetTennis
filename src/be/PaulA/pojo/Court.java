@@ -8,7 +8,6 @@ import be.PaulA.project.DAO.ProjectConnection;
 
 public class Court implements Serializable{
 	private static final long serialVersionUID = 3066075689178541330L;
-	private Tournament touramenet;
 	private Match currMatch;
 	private int nbSpectator;
 	private Boolean covered;
@@ -19,13 +18,7 @@ public class Court implements Serializable{
 		
 	}
 
-	public Tournament getTouramenet() {
-		return touramenet;
-	}
-
-	public void setTouramenet(Tournament touramenet) {
-		this.touramenet = touramenet;
-	}
+	
 
 	public Match getCurrMatch() {
 		return currMatch;
