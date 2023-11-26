@@ -19,7 +19,9 @@ public class Tournament {
 		schedules[3] = new Schedule(ScheduleType.LaidesDouble,this);
 		schedules[4] = new Schedule(ScheduleType.MixedDouble,this);
 		referees = Referee.getAllRefs();
+		
 		courts = Court.getAllCourt();
+		
 	}
 	public void play() {
 		for(Schedule s : schedules) {

@@ -151,13 +151,14 @@ public class Match {
 			rep += s.toString()+" ";
 			
 		}
-		rep +=" ) row : "+round;
+		rep +=" " + ref.toString()+" " + court.toString();
 		return rep;
 	}
 	@Override 
 	public int hashCode() {
 		return super.hashCode();
 	}
+	@Override
 	public boolean equals(Object o) {
 		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
 	}

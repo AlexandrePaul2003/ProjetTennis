@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import be.PaulA.pojo.Match;
 import be.PaulA.pojo.Tournament;
@@ -22,6 +23,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.ScrollPaneConstants;
 
 public class Tous extends JFrame {
 
@@ -64,6 +66,7 @@ public class Tous extends JFrame {
 		 t = new Tournament("test");
 		 currTurn = 0;
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 29, 326, 246);
 		contentPane.add(scrollPane);
 		DefaultTableModel model = new DefaultTableModel(new String[] {"Joueur1","Joueur2","Match nbr"},0);
@@ -77,6 +80,8 @@ public class Tous extends JFrame {
 		}
 		
 		table = new JTable(model);
+		TableColumnModel columnModel = table.getColumnModel();
+		columnModel.getColumn(2).setPreferredWidth(10);
 		
 		scrollPane.setViewportView(table);
 		
@@ -94,9 +99,12 @@ public class Tous extends JFrame {
 			i++;
 		}
 		table_1 = new JTable(model1);
+		columnModel = table_1.getColumnModel();
+		columnModel.getColumn(2).setPreferredWidth(10);
 		scrollPane_1.setViewportView(table_1);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_2.setBounds(346, 29, 424, 246);
 		contentPane.add(scrollPane_2);
 		
@@ -111,6 +119,8 @@ public class Tous extends JFrame {
 		}
 		
 		table_2 = new JTable(model2);
+		columnModel = table_2.getColumnModel();
+		columnModel.getColumn(2).setPreferredWidth(10);
 		scrollPane_2.setViewportView(table_2);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
@@ -128,9 +138,12 @@ public class Tous extends JFrame {
 		}
 		
 		table_3 = new JTable(model3);
+		columnModel = table_3.getColumnModel();
+		columnModel.getColumn(2).setPreferredWidth(10);
 		scrollPane_3.setViewportView(table_3);
 		
 		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane_4.setBounds(780, 29, 459, 482);
 		contentPane.add(scrollPane_4);
 		
@@ -145,6 +158,8 @@ public class Tous extends JFrame {
 		}
 		
 		table_4 = new JTable(model4);
+		columnModel = table_4.getColumnModel();
+		columnModel.getColumn(2).setPreferredWidth(10);
 		scrollPane_4.setViewportView(table_4);
 		
 		JButton bouton = new JButton("Avancer");
@@ -260,6 +275,8 @@ public class Tous extends JFrame {
 		}
 		
 		table = new JTable(model);
+		TableColumnModel columnModel = table.getColumnModel();
+		columnModel.getColumn(2).setPreferredWidth(10);
 		scrollPane.setViewportView(table);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -276,6 +293,8 @@ public class Tous extends JFrame {
 			i++;
 		}
 		table_1 = new JTable(model1);
+		 columnModel = table_1.getColumnModel();
+		columnModel.getColumn(2).setPreferredWidth(10);
 		scrollPane_1.setViewportView(table_1);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
@@ -293,6 +312,8 @@ public class Tous extends JFrame {
 		}
 		
 		table_2 = new JTable(model2);
+		columnModel = table_2.getColumnModel();
+		columnModel.getColumn(2).setPreferredWidth(10);
 		scrollPane_2.setViewportView(table_2);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
@@ -310,6 +331,8 @@ public class Tous extends JFrame {
 		}
 		
 		table_3 = new JTable(model3);
+		columnModel = table_1.getColumnModel();
+		columnModel.getColumn(2).setPreferredWidth(10);
 		scrollPane_3.setViewportView(table_3);
 		
 		JScrollPane scrollPane_4 = new JScrollPane();
@@ -327,6 +350,8 @@ public class Tous extends JFrame {
 		}
 		
 		table_4 = new JTable(model4);
+		columnModel = table_4.getColumnModel();
+		columnModel.getColumn(2).setPreferredWidth(10);
 		scrollPane_4.setViewportView(table_4);
 		
 		JButton bouton = new JButton("Avancer");

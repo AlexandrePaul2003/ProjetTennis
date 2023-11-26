@@ -43,5 +43,17 @@ public class Referee extends Person implements Serializable {
 		RefereeDAO rDAO = new RefereeDAO(ProjectConnection.getInstance());
 		return rDAO.find();
 	}
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+	@Override 
+	public int hashCode() {
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object o) {
+		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
+	}
 
 }

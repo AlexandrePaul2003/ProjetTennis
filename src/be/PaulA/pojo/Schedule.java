@@ -71,7 +71,8 @@ public class Schedule {
 		while(!hasPlayedAllMatches) {
 			try {
 			hasPlayedAllMatches = true;
-			
+			noRef=false;
+			noCourts=false;
 			for(Match m : matches) {
 				//System.out.println("match playing");
 				if(m.getRound()==actualRound&&m.getWinner()==null) {
@@ -94,6 +95,7 @@ public class Schedule {
 								Court c = getCourtAva();
 								if(c!=null) {
 									m.setCourt(c);
+									c.setCurrMatch(m);
 								}else {
 									noCourts=true;
 								}	
@@ -102,6 +104,7 @@ public class Schedule {
 							Referee r = getRefAva();
 							if(r!=null) {
 								m.setRef(r);
+								r.setCurrMatch(m);
 							}else {
 								noRef=true;
 							}	

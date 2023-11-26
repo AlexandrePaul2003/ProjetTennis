@@ -17,6 +17,7 @@ import be.PaulA.pojo.Tournament;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.ScrollPaneConstants;
 
 public class Base extends JFrame {
 
@@ -47,7 +48,7 @@ public class Base extends JFrame {
 	public Base(Tournament t,int currTurn,int Nschedule) {
 		this.t=t;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 760, 595);
+		setBounds(100, 100, 1268, 595);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
@@ -71,14 +72,15 @@ public class Base extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 724, 484);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(10, 11, 1232, 484);
 		contentPane.add(scrollPane);
 		
 		table = new JTable(model);
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("Fermer");
-		btnNewButton.setBounds(308, 506, 118, 39);
+		btnNewButton.setBounds(558, 506, 118, 39);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {

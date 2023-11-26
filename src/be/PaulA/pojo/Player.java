@@ -50,6 +50,18 @@ public class Player extends Person implements Serializable {
 		}
 		return p;
 	}
+	@Override
+	public String toString() {
+		return super.toString()+", "+nationnality + " rank :" + rank ;
+	}
+	@Override 
+	public int hashCode() {
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object o) {
+		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
+	}
 	
 
 	

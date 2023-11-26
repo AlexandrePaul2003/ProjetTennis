@@ -61,6 +61,18 @@ public class Court implements Serializable{
 		CourtDAO cDAO = new CourtDAO(ProjectConnection.getInstance());
 		return cDAO.find();
 	}
+	@Override
+	public String toString() {
+		return "Court : " + covered.toString()+ " nb spectateur " + nbSpectator +" ";
+	}
+	@Override 
+	public int hashCode() {
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object o) {
+		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
+	}
 	 
 	
 }
