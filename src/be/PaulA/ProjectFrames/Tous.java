@@ -166,22 +166,6 @@ public class Tous extends JFrame {
 		bouton.setBounds(1005, 512, 89, 23);
 		contentPane.add(bouton);
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(10, -4, 101, 22);
-		contentPane.add(menuBar);
-		JMenu menu = new JMenu("Détails");
-		menuBar.add(menu);
-		JMenuItem m1 = new JMenuItem("Simple homme");
-		JMenuItem m2 = new JMenuItem("Simple femme ");
-		JMenuItem m3 = new JMenuItem("Double hommes");
-		JMenuItem m4 = new JMenuItem("Double femme");
-		JMenuItem m5 = new JMenuItem("Double mixte");
-		menu.add(m1);
-		menu.add(m2);
-		menu.add(m3);
-		menu.add(m4);
-		menu.add(m5);
-		
 		JLabel lblNewLabel = new JLabel("Simple homme");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(135, 4, 111, 14);
@@ -206,11 +190,6 @@ public class Tous extends JFrame {
 		lblDoubleMixte.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDoubleMixte.setBounds(960, 6, 111, 14);
 		contentPane.add(lblDoubleMixte);
-		m1.addActionListener( this::ouvrirMenu );
-		m2.addActionListener( this::ouvrirMenu );
-		m3.addActionListener( this::ouvrirMenu );
-		m4.addActionListener( this::ouvrirMenu );
-		m5.addActionListener( this::ouvrirMenu );
 		
 		
 		
