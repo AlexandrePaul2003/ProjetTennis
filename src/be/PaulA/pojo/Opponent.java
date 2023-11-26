@@ -44,6 +44,15 @@ import be.PaulA.project.DAO.ProjectConnection;
 		public void setSets(List<Set> sets) {
 			this.sets = sets;
 		}
+		
+		public int getRank() {
+			return rank;
+		}
+
+		public void setRank(int rank) {
+			this.rank = rank;
+		}
+
 		public static Opponent getOpp(int nMatch,Match m) {
 			List<Player> pl = new ArrayList<Player>();
 			if(m.getSchedule().getType()==ScheduleType.GentlemenSingle||m.getSchedule().getType()==ScheduleType.LadiesSingle) {
@@ -63,10 +72,13 @@ import be.PaulA.project.DAO.ProjectConnection;
 		@Override
 		public String toString() {
 			String re="";
+			Boolean passed= false;
 			for(Player p : players) {
+				
 				re += p.getLastname()+" " + p.getFirstname();
-				if(players.size()>1) {
+				if(players.size()>1&&!passed) {
 					re = re +" & ";
+					passed =true;
 				}
 			}
 			return re;

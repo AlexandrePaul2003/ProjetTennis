@@ -65,7 +65,10 @@ public class PlayerDAO extends DAO<Player>{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		return p;
+		if(p!=null)
+			return p;
+			else 
+				return new Player("null","null","null",0,'F');
 	}
 	public Player find(int rank,char sexe) {
 		Player p = null;
@@ -81,6 +84,9 @@ public class PlayerDAO extends DAO<Player>{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		if(p!=null)
 		return p;
+		else 
+			return new Player("null","null","null",0,'F');
 	}
 }

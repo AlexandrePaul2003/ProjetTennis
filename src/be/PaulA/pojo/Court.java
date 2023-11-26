@@ -52,14 +52,26 @@ public class Court implements Serializable{
 	}
 	
 	public boolean available() {
-		return true;
+		return currMatch == null ? true : false;
 	}
 	public void release() {
-		
+		currMatch=null;
 	}
 	public static List<Court> getAllCourt() {
 		CourtDAO cDAO = new CourtDAO(ProjectConnection.getInstance());
 		return cDAO.find();
+	}
+	@Override
+	public String toString() {
+		return "Court : " + covered.toString()+ " nb spectateur " + nbSpectator +" ";
+	}
+	@Override 
+	public int hashCode() {
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object o) {
+		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
 	}
 	 
 	

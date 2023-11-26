@@ -3,6 +3,8 @@ package be.PaulA.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class Tournament {
 	private String name;
 	private Schedule[] schedules = new Schedule[5];
@@ -17,10 +19,20 @@ public class Tournament {
 		schedules[3] = new Schedule(ScheduleType.LaidesDouble,this);
 		schedules[4] = new Schedule(ScheduleType.MixedDouble,this);
 		referees = Referee.getAllRefs();
-		courts = Court.getAllCourt();
-	}
-	public void Play() {
 		
+		courts = Court.getAllCourt();
+		
+	}
+	public void play() {
+		for(Schedule s : schedules) {
+			if(s.getWinner()==null) {
+				s.playNextRound();
+				//System.out.println("Il est null");
+			}else {
+				JOptionPane.showMessageDialog(null, "AND THE WINNER IS : " +s.getWinner().toString());
+				//System.out.println("Il est pas null");
+			}
+		}
 	}
 	public String getName() {
 		return name;
