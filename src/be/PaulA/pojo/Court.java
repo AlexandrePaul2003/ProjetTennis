@@ -1,37 +1,24 @@
 package be.PaulA.pojo;
 
 import java.io.Serializable;
+import java.util.List;
+
+import be.PaulA.project.DAO.CourtDAO;
+import be.PaulA.project.DAO.ProjectConnection;
 
 public class Court implements Serializable{
 	private static final long serialVersionUID = 3066075689178541330L;
-	private Tournament touramenet;
 	private Match currMatch;
 	private int nbSpectator;
 	private Boolean covered;
 	
-	public Court(int nbSpectator,int covered){
+	public Court(int nbSpectator,Boolean covered){
 		this.nbSpectator=nbSpectator;
-		switch(covered) {
-		case 0:
-			this.covered=false;
-			break;
-		case 1:
-			this.covered=true;
-			break;
-		case 2:
-			this.covered=false;
-			System.out.println("Erreur covered non reconnu");
-			break;
-		}
+		this.covered=covered;
+		
 	}
 
-	public Tournament getTouramenet() {
-		return touramenet;
-	}
-
-	public void setTouramenet(Tournament touramenet) {
-		this.touramenet = touramenet;
-	}
+	
 
 	public Match getCurrMatch() {
 		return currMatch;
@@ -58,10 +45,26 @@ public class Court implements Serializable{
 	}
 	
 	public boolean available() {
-		return true;
+		return currMatch == null ? true : false;
 	}
 	public void release() {
-		
+		currMatch=null;
+	}
+	public static List<Court> getAllCourt() {
+		CourtDAO cDAO = new CourtDAO(ProjectConnection.getInstance());
+		return cDAO.find();
+	}
+	@Override
+	public String toString() {
+		return "Court : " + covered.toString()+ " nb spectateur " + nbSpectator +" ";
+	}
+	@Override 
+	public int hashCode() {
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object o) {
+		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
 	}
 	 
 	

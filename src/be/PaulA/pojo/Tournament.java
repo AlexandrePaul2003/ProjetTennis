@@ -3,17 +3,34 @@ package be.PaulA.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class Tournament {
 	private String name;
 	private Schedule[] schedules = new Schedule[5];
 	private List<Court> courts = new ArrayList<Court>();
 	private List<Referee> referees = new ArrayList<Referee>();
 	
-	public Tournament() {
+	public Tournament(String name) {
+		this.name=name;
+		schedules[0] = new Schedule(ScheduleType.GentlemenSingle,this);
+		schedules[1] = new Schedule(ScheduleType.LadiesSingle,this);
+		schedules[2] = new Schedule(ScheduleType.GentlemenDouble,this);
+		schedules[3] = new Schedule(ScheduleType.LaidesDouble,this);
+		schedules[4] = new Schedule(ScheduleType.MixedDouble,this);
+		referees = Referee.getAllRefs();
+		
+		courts = Court.getAllCourt();
 		
 	}
-	public void Play() {
-		
+	public void play() {
+		for(Schedule s : schedules) {
+			if(s.getWinner()==null) {
+				s.playNextRound();
+			}else {
+				JOptionPane.showMessageDialog(null, "AND THE WINNER IS : " +s.getWinner().toString());
+			}
+		}
 	}
 	public String getName() {
 		return name;
@@ -39,6 +56,16 @@ public class Tournament {
 	public void setReferees(List<Referee> referees) {
 		this.referees = referees;
 	} 
+	public String toString() {
+		return "nom : "+name;
+	}
+	public int hashCode() {
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object o) {
+		return this.toString().hashCode()==o.toString().hashCode() ? true : false;
+	}
 	
 	
 }

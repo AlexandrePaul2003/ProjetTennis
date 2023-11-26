@@ -9,7 +9,16 @@ public class CourtDAO extends DAO<Court>{
 	public CourtDAO(Connection conn) {
 		super(conn);
 	}
-	public boolean create(Court obj) {
+	public boolean create(Court court) {
+		try{
+			Statement  st = this.connect.createStatement();
+			int covered = court.getCovered() ? 1 : 0;
+			st.executeUpdate("INSERT INTO Cours(cours_nbrPlaces,cours_couverture) VALUES("+court.getNbSpectator()+","+covered+")");
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
 		return true;
 	}
 	
@@ -29,9 +38,10 @@ public class CourtDAO extends DAO<Court>{
 		try{
 			ResultSet result = this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT * FROM Court");
+			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT * FROM Cours");
 			while(result.next()) {
-				courts.add(new Court(result.getInt("cours_nbrPers"),result.getInt("cours_covered")));
+				Boolean covered = result.getInt("cours_couverture")==1 ? true  :false ;
+				courts.add(new Court(result.getInt("cours_nbrPlaces"),covered));
 			}
 			
 		}

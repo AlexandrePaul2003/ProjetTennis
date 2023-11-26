@@ -32,7 +32,6 @@ public class PlayerDAO extends DAO<Player>{
 					while(result.next()) {
 						id=result.getInt("pers_id");
 					}
-			System.out.println(id);
 			Statement st = this.connect.createStatement();
 			st.executeUpdate("INSERT INTO Joueur(pers_id,pers_rank,pers_sexe) VALUES("+id+","+player.getRank()+",'"+player.getGender()+"')");
 			
@@ -59,13 +58,35 @@ public class PlayerDAO extends DAO<Player>{
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
 			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT * FROM Joueur j INNER JOIN Personne p ON j.pers_id=p.pers_id WHERE j.pers_id="+id);
 			while(result.next()) {
-				p= new Player(result.getString("pers_nom"),result.getString("pers_prenom"),result.getString("pers_nationnalite"),result.getInt("pers_rank"),result.getString("pers_sexe"));
+				p= new Player(result.getString("pers_nom"),result.getString("pers_prenom"),result.getString("pers_nationnalite"),result.getInt("pers_rank"),result.getString("pers_sexe").charAt(0));
 			}
 			
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		if(p!=null)
+			return p;
+			else 
+				return new Player("null","null","null",0,'F');
+	}
+	public Player find(int rank,char sexe) {
+		Player p = null;
+		try{
+			ResultSet result = this.connect.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY	).executeQuery("SELECT * FROM Joueur j INNER JOIN Personne p ON j.pers_id=p.pers_id WHERE j.pers_rank="+rank+" AND pers_sexe='"+sexe+"'");
+			while(result.next()) {
+				p= new Player(result.getString("pers_nom"),result.getString("pers_prenom"),result.getString("pers_nationnalite"),result.getInt("pers_rank"),result.getString("pers_sexe").charAt(0));
+			}
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		if(p!=null)
 		return p;
+		else 
+			return new Player("null","null","null",0,'F');
 	}
 }
